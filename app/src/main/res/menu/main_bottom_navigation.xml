@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_message"
+        android:enabled="true"
+        android:icon="@mipmap/sel_message"
+        android:title="消息"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_contacts"
+        android:enabled="true"
+        android:icon="@mipmap/sel_contacts"
+        android:title="通讯录"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_find"
+        android:enabled="true"
+        android:icon="@mipmap/sel_find"
+        android:title="发现"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_mine"
+        android:enabled="true"
+        android:icon="@mipmap/sel_mine"
+        android:title="我"
+        app:showAsAction="ifRoom" />
+</menu>
