@@ -1,2 +1,6 @@
 # Myclient
-it is a example client
+微聊
+实现功能：
+  1. 底部导航栏
+  2. 顶部导航栏
+  3. 仿QQ刷新，正常刷新
