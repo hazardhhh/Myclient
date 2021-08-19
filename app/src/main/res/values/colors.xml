@@ -155,4 +155,5 @@
     <!-- bottom_navigation_item_selector.xml-->
     <color name="color_focused">#E45242</color>
     <color name="color_un_focused">#222222</color>
+
 </resources>

@@ -6,13 +6,22 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.client.R;
 import com.example.client.base.BaseActivity;
@@ -21,6 +30,7 @@ import com.example.client.ui.fragment.ContactsFragment;
 import com.example.client.ui.fragment.FindFragment;
 import com.example.client.ui.fragment.MessageFragment;
 import com.example.client.ui.fragment.MineFragment;
+import com.example.client.utils.ToastUtils;
 import com.example.client.widget.NormalRefreshView;
 import com.example.client.widget.QQRefreshView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,11 +40,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  *
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener{
 
 //    private MessageFragment mMessageFragment = HomeFragmentFactory.getInstance().getMessageFragment();
 //    private ContactsFragment mContactsFragment = HomeFragmentFactory.getInstance().getContactsFragment();
@@ -49,6 +60,8 @@ public class MainActivity extends BaseActivity {
     ViewPager viewPager;
     @BindView(R.id.message)
     TextView text_message;
+    @BindView(R.id.find_add)
+    ImageView find_add;
 
     private RelativeLayout layout_message;
     private RelativeLayout layout_contacts;
@@ -237,6 +250,66 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @OnClick({R.id.find_add})
+    public void onClick_Toolbar(View view){
+        switch (view.getId()){
+            case R.id.find_add:
+                showFindAdd();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_choose_img:
+                //选择照片按钮
+                ToastUtils.show(this, "请选择照片");
+                break;
+
+            case R.id.btn_open_camera:
+                //拍照按钮
+                ToastUtils.show(this, "即将打开相机");
+                break;
+
+            case R.id.btn_cancel:
+                ToastUtils.show(this, "取消");
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private void showFindAdd() {
+        Dialog mCameraDialog = new Dialog(this, R.style.BottomDialog);
+        LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.bottom_dialog, null);
+
+        //初始化视图
+        root.findViewById(R.id.btn_choose_img).setOnClickListener(this);
+        root.findViewById(R.id.btn_open_camera).setOnClickListener(this);
+        root.findViewById(R.id.btn_cancel).setOnClickListener(this);
+
+        mCameraDialog.setContentView(root);
+        Window dialogWindow = mCameraDialog.getWindow();
+        dialogWindow.setGravity(Gravity.BOTTOM);
+//        dialogWindow.setWindowAnimations(R.style.dialogstyle); // 添加动画
+
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes(); // 获取对话框当前的参数值
+        lp.x = 0; // 新位置X坐标
+        lp.y = 0; // 新位置Y坐标
+        lp.width = (int) getResources().getDisplayMetrics().widthPixels; // 宽度
+        root.measure(0, 0);
+        lp.height = root.getMeasuredHeight();
+
+        lp.alpha = 9f; // 透明度
+        dialogWindow.setAttributes(lp);
+        mCameraDialog.show();
+    }
+
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK
@@ -255,6 +328,7 @@ public class MainActivity extends BaseActivity {
         }
         return super.dispatchKeyEvent(event);
     }
+
 
 //    /**
 //     * 切换fragment

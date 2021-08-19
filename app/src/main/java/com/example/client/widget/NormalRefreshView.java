@@ -102,12 +102,10 @@ public class NormalRefreshView extends RefreshBaseView {
 //        anim1.setRepeatMode(-1);
         //动画终止时停留在最后一帧
         anim1.setFillAfter(true);
-//        anim1.setInterpolator(new LinearInterpolator());
-        iv_refresh.setVisibility(View.VISIBLE);
         iv_refresh.clearAnimation();
-//        iv_refresh.setAnimation(anim1);
         iv_refresh.startAnimation(anim1);
         pb_refresh.setVisibility(View.GONE);
+        iv_refresh.setVisibility(View.VISIBLE);
 
     }
 

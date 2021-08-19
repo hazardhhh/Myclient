@@ -15,6 +15,15 @@
         android:text="发现"
         android:gravity="center_vertical"
         android:minHeight="45dp"
-        android:textSize="15dp"
+        android:textSize="17sp"
         android:textColor="@color/white"/>
+
+    <ImageView
+        android:id="@+id/find_add"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/find_add"
+        android:layout_marginRight="10dp"/>
 </RelativeLayout>
