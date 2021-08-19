@@ -1,10 +1,11 @@
 package com.example.client.widget;
 
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,11 +18,9 @@ import com.example.client.utils.TimeSPUtil;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 /**
- * 刷新控制view
+ * 刷新控制 view
  *
- * @author yangpeixing
  */
 public class NormalRefreshView extends RefreshBaseView {
 
@@ -93,15 +92,23 @@ public class NormalRefreshView extends RefreshBaseView {
         ll_ok.setVisibility(View.GONE);
         tv_tip.setText("下拉刷新");
         getRefreshTime();
+        //x轴的值，0.5f表明是以自身这个控件的一半长度为x轴
         RotateAnimation anim1 = new RotateAnimation(0, 180,
                 RotateAnimation.RELATIVE_TO_SELF, 0.5f,
                 RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+        //设置动画持续时间
         anim1.setDuration(300);
+        //设置重复次数
+//        anim1.setRepeatMode(-1);
+        //动画终止时停留在最后一帧
         anim1.setFillAfter(true);
+//        anim1.setInterpolator(new LinearInterpolator());
+        iv_refresh.setVisibility(View.VISIBLE);
         iv_refresh.clearAnimation();
+//        iv_refresh.setAnimation(anim1);
         iv_refresh.startAnimation(anim1);
         pb_refresh.setVisibility(View.GONE);
-        iv_refresh.setVisibility(View.VISIBLE);
+
     }
 
     /**
@@ -119,6 +126,7 @@ public class NormalRefreshView extends RefreshBaseView {
                 RotateAnimation.RELATIVE_TO_SELF, 0.5f,
                 RotateAnimation.RELATIVE_TO_SELF, 0.5f);
         anim1.setDuration(300);
+//        anim1.setRepeatMode(-1);
         anim1.setFillAfter(true);
         iv_refresh.clearAnimation();
         iv_refresh.startAnimation(anim1);
@@ -141,6 +149,15 @@ public class NormalRefreshView extends RefreshBaseView {
         iv_refresh.clearAnimation();
         iv_refresh.setVisibility(View.GONE);
         pb_refresh.setVisibility(View.VISIBLE);
+        RotateAnimation anim1 = new RotateAnimation(0, 360,
+                RotateAnimation.RELATIVE_TO_SELF, 0.5f,
+                RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+        anim1.setDuration(300);
+        anim1.setRepeatMode(-1);
+        anim1.setFillAfter(true);
+        pb_refresh.clearAnimation();
+        pb_refresh.startAnimation(anim1);
+
     }
 
     /**

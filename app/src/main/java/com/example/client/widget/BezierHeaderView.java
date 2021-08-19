@@ -20,10 +20,6 @@ import android.view.WindowManager;
 
 import com.example.client.R;
 
-/**
- * 作者：yangpeixing on 16/9/6 15:14
- * 博客主页：http://blog.csdn.net/qq_16674697?viewmode=list
- */
 public class BezierHeaderView extends View {
     float offset = 1.0f;
     float delayY;
@@ -127,7 +123,7 @@ public class BezierHeaderView extends View {
 
     public void animToReset(boolean lock) {
         if (!lock) {
-            anim = ObjectAnimator.ofFloat(offset, "ypx", 0.0F, 1.0F).setDuration(200);
+            anim = ObjectAnimator.ofFloat(offset, "hhh", 0.0F, 1.0F).setDuration(200);
             //使用反弹算法插值器,貌似没有什么太大的效果 - -!
             // anim.setInterpolator(new BounceInterpolator());
             anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

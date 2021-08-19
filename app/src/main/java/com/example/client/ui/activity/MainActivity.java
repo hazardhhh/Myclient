@@ -31,6 +31,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ *
+ */
 public class MainActivity extends BaseActivity {
 
 //    private MessageFragment mMessageFragment = HomeFragmentFactory.getInstance().getMessageFragment();
@@ -52,10 +55,14 @@ public class MainActivity extends BaseActivity {
     private RelativeLayout layout_find;
     private RelativeLayout layout_mine;
 
-    //仿QQ下拉刷新
+    /**
+     *  仿QQ下拉刷新
+     */
 //    QQRefreshView refreshableView;
 
-    //正常刷新
+    /**
+     *  正常刷新
+     */
     NormalRefreshView normalRefreshView;
 
     final int SUCCESS = 1;
