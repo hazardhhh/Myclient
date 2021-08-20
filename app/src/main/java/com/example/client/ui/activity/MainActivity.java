@@ -2,11 +2,11 @@ package com.example.client.ui.activity;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -16,12 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.client.R;
 import com.example.client.base.BaseActivity;
@@ -32,7 +30,6 @@ import com.example.client.ui.fragment.MessageFragment;
 import com.example.client.ui.fragment.MineFragment;
 import com.example.client.utils.ToastUtils;
 import com.example.client.widget.NormalRefreshView;
-import com.example.client.widget.QQRefreshView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -62,11 +59,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     TextView text_message;
     @BindView(R.id.find_add)
     ImageView find_add;
+    @BindView(R.id.message_add)
+    ImageView message_add;
 
     private RelativeLayout layout_message;
     private RelativeLayout layout_contacts;
     private RelativeLayout layout_find;
     private RelativeLayout layout_mine;
+
 
     /**
      *  仿QQ下拉刷新
@@ -250,11 +250,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     }
 
-    @OnClick({R.id.find_add})
+    @OnClick({R.id.find_add,R.id.message_add})
     public void onClick_Toolbar(View view){
         switch (view.getId()){
             case R.id.find_add:
                 showFindAdd();
+                break;
+
+            case R.id.message_add:
+                Intent intent_messageTopDialog=new Intent(mContext, MessageTopDialogActivity.class);
+                startActivity(intent_messageTopDialog);
                 break;
 
             default:
@@ -285,8 +290,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     }
 
     private void showFindAdd() {
-        Dialog mCameraDialog = new Dialog(this, R.style.BottomDialog);
-        LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.bottom_dialog, null);
+        Dialog mCameraDialog = new Dialog(this, R.style.Find_BottomDialog);
+        LinearLayout root = (LinearLayout) LayoutInflater.from(this).inflate(R.layout.find_bottom_dialog, null);
 
         //初始化视图
         root.findViewById(R.id.btn_choose_img).setOnClickListener(this);
