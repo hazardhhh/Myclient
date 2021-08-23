@@ -41,6 +41,11 @@
         <activity android:name=".ui.activity.MessageTopDialogActivity"
                 android:theme="@style/Message_TopDialog"/>
 
+        <activity android:name=".ui.activity.AchieveDataActivity"
+                android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.activity.PersonIntroduce"
+                android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

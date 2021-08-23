@@ -250,7 +250,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     }
 
-    @OnClick({R.id.find_add,R.id.message_add})
+    @OnClick({R.id.find_add, R.id.message_add})
     public void onClick_Toolbar(View view){
         switch (view.getId()){
             case R.id.find_add:
