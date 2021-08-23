@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">微聊</string>
+
+    <string name="message_toolbar_change">信息</string>
+    <string name="quit">再按一次退出程序</string>
+    <string name="person_introduce">个人简介</string>
+    <string name="cost_query">缴费查询</string>
+    <string name="invite_friend">邀请朋友</string>
+    <string name="complain_advise">投诉建议</string>
+    <string name="achieve_data">完善资料</string>
+    <string name="actual_identification">实名认证</string>
 </resources>

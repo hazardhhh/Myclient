@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private RelativeLayout layout_message;
     private RelativeLayout layout_contacts;
     private RelativeLayout layout_find;
-    private RelativeLayout layout_mine;
+//    private RelativeLayout layout_mine;
 
 
     /**
@@ -76,7 +76,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     /**
      *  正常刷新
      */
-    NormalRefreshView normalRefreshView;
+//    NormalRefreshView normalRefreshView;
 
     final int SUCCESS = 1;
     final int FAILED = 0;
@@ -115,7 +115,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         layout_message=findViewById(R.id.layout_message);
         layout_contacts=findViewById(R.id.layout_contacts);
         layout_find=findViewById(R.id.layout_find);
-        layout_mine=findViewById(R.id.layout_mine);
+//        layout_mine=findViewById(R.id.layout_mine);
 
 //        //仿QQ刷新
 //        refreshableView = (QQRefreshView) findViewById(R.id.refreshableView1);
@@ -137,23 +137,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 //            }
 //        });
 
-        //正常刷新
-        normalRefreshView=(NormalRefreshView)findViewById(R.id.refreshableView1);
-        normalRefreshView.setRefreshEnabled(true);
-        normalRefreshView.setRefreshListener(new NormalRefreshView.RefreshListener(){
-
-            @Override
-            public void onRefresh() {
-                //定时器
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        handler.sendEmptyMessage(SUCCESS);
-
-                    }
-                }, 500);
-            }
-        });
+//        //正常刷新
+//        normalRefreshView=(NormalRefreshView)findViewById(R.id.refreshableView1);
+//        normalRefreshView.setRefreshEnabled(true);
+//        normalRefreshView.setRefreshListener(new NormalRefreshView.RefreshListener(){
+//
+//            @Override
+//            public void onRefresh() {
+//                //定时器
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        handler.sendEmptyMessage(SUCCESS);
+//
+//                    }
+//                }, 500);
+//            }
+//        });
 
         // 初始化页卡
         initPager();
@@ -161,24 +161,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 //        viewPager.setCurrentItem(2);
     }
 
-    @SuppressLint("HandlerLeak")
-    Handler handler = new Handler() {
-        public void handleMessage(android.os.Message msg) {
-            switch (msg.what) {
-                case SUCCESS:
-//                    refreshableView.finishRefresh(true);
-                    normalRefreshView.finishRefresh(true);
-                    text_message.setText("信息");
-                    break;
-                case FAILED:
-//                    refreshableView.finishRefresh(false);
-                    normalRefreshView.finishRefresh(false);
-                    break;
-                default:
-                    break;
-            }
-        };
-    };
+//    @SuppressLint("HandlerLeak")
+//    Handler handler = new Handler() {
+//        public void handleMessage(android.os.Message msg) {
+//            switch (msg.what) {
+//                case SUCCESS:
+////                    refreshableView.finishRefresh(true);
+//                    normalRefreshView.finishRefresh(true);
+//                    text_message.setText(R.string.message_toolbar_change);
+//                    break;
+//                case FAILED:
+////                    refreshableView.finishRefresh(false);
+//                    normalRefreshView.finishRefresh(false);
+//                    break;
+//                default:
+//                    break;
+//            }
+//        };
+//    };
 
     private void initPager() {
         FragmentAdapter adapter = new FragmentAdapter(mFragments, getSupportFragmentManager());
@@ -223,22 +223,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                     layout_message.setVisibility(View.VISIBLE);
                     layout_contacts.setVisibility(View.GONE);
                     layout_find.setVisibility(View.GONE);
-                    layout_mine.setVisibility(View.GONE);
+//                    layout_mine.setVisibility(View.GONE);
                 }if(position==1){
                     layout_message.setVisibility(View.GONE);
                     layout_contacts.setVisibility(View.VISIBLE);
                     layout_find.setVisibility(View.GONE);
-                    layout_mine.setVisibility(View.GONE);
+//                    layout_mine.setVisibility(View.GONE);
                 } if(position==2){
                     layout_message.setVisibility(View.GONE);
                     layout_contacts.setVisibility(View.GONE);
                     layout_find.setVisibility(View.VISIBLE);
-                    layout_mine.setVisibility(View.GONE);
+//                    layout_mine.setVisibility(View.GONE);
                 }if(position==3) {
                     layout_message.setVisibility(View.GONE);
                     layout_contacts.setVisibility(View.GONE);
                     layout_find.setVisibility(View.GONE);
-                    layout_mine.setVisibility(View.VISIBLE);
+//                    layout_mine.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -322,7 +322,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 && event.getRepeatCount() == 0) {
             // 重写键盘事件分发，onKeyDown方法某些情况下捕获不到，只能在这里写
             if ((System.currentTimeMillis() - exitTime) > 2000) {
-                Snackbar snackbar = Snackbar.make(viewPager, "再按一次退出程序", Snackbar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(viewPager, R.string.quit, Snackbar.LENGTH_SHORT);
                 snackbar.getView().setBackgroundResource(R.color.colorPrimary);
                 snackbar.show();
                 exitTime = System.currentTimeMillis();

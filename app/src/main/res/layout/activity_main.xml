@@ -9,12 +9,12 @@
 
     <include layout="@layout/toolbar_layout"/>
 
-    <com.example.client.widget.NormalRefreshView
-        android:id="@+id/refreshableView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="visible">
+<!--    <com.example.client.widget.NormalRefreshView-->
+<!--        android:id="@+id/refreshableView1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        android:visibility="visible">-->
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
@@ -32,5 +32,5 @@
             app:itemTextColor="@drawable/bottom_navigation_item_selector"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/main_bottom_navigation" />
-    </com.example.client.widget.NormalRefreshView>
+<!--    </com.example.client.widget.NormalRefreshView>-->
 </LinearLayout>
