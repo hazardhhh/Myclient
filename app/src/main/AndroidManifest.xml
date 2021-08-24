@@ -46,6 +46,10 @@
 
         <activity android:name=".ui.activity.PersonIntroduce"
                 android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.activity.CostQueryActivity"
+                android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

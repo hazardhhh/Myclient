@@ -9,12 +9,14 @@ import android.widget.TextView;
 import com.example.client.R;
 import com.example.client.base.BaseFragment;
 import com.example.client.ui.activity.AchieveDataActivity;
+import com.example.client.ui.activity.CostQueryActivity;
 import com.example.client.ui.activity.PersonIntroduce;
 
 public class MineFragment extends BaseFragment implements View.OnClickListener{
 
     private TextView achieve_data;
     private LinearLayout person_introduce_show;
+    private LinearLayout cost_query_show;
 
     @Override
     protected int getLayoutId() {
@@ -31,6 +33,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
         super.initWidget(savedInstanceState);
         achieve_data = (TextView) getViewById(R.id.tv_achieve_data);
         person_introduce_show=(LinearLayout)getViewById(R.id.person_introduce_show);
+        cost_query_show=(LinearLayout)getViewById(R.id.cost_query_show);
     }
 
     @Override
@@ -38,6 +41,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
         super.initClick();
         achieve_data.setOnClickListener(this);
         person_introduce_show.setOnClickListener(this);
+        cost_query_show.setOnClickListener(this);
     }
 
     @Override
@@ -51,6 +55,11 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
             case R.id.person_introduce_show:
                 Intent intent_mine_person_introduce=new Intent(getActivity(), PersonIntroduce.class);
                 getActivity().startActivity(intent_mine_person_introduce);
+                break;
+
+            case R.id.cost_query_show:
+                Intent intent_cost_query_show=new Intent(getActivity(), CostQueryActivity.class);
+                getActivity().startActivity(intent_cost_query_show);
                 break;
 
             default:

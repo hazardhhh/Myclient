@@ -23,4 +23,10 @@
     <string name="person_honour">个人荣誉</string>
     <string name="hint_person_honour">获得过哪些荣誉...</string>
     <string name="person_photo">个人照片</string>
+
+    <!-- 缴费查询Top -->
+    <string name="mine_cost_query_days">7天内</string>
+    <string name="mine_cost_query_month">1个月</string>
+    <string name="mine_cost_query_months">3个月</string>
+    <string name="mine_cost_query_year">1年</string>
 </resources>
