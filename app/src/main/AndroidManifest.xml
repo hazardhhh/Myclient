@@ -13,6 +13,12 @@
     <!-- 获取sd卡写的权限，用于文件上传和下载 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!-- 调用相机权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 读取sd卡权限 -->
+<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -30,7 +36,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.MainActivity">
+        <activity android:name=".ui.activity.MainActivity"
+            android:alwaysRetainTaskState="true">
             <intent-filter>
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
@@ -42,13 +49,23 @@
                 android:theme="@style/Message_TopDialog"/>
 
         <activity android:name=".ui.activity.AchieveDataActivity"
-                android:screenOrientation="portrait"/>
+                android:screenOrientation="portrait" />
 
         <activity android:name=".ui.activity.PersonIntroduce"
                 android:screenOrientation="portrait"/>
 
         <activity android:name=".ui.activity.CostQueryActivity"
                 android:screenOrientation="portrait"/>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
     </application>
 

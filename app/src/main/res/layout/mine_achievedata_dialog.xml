@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:background="@drawable/mine_achievedata_bottom_dialog"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    android:paddingBottom="10dp"
+    android:paddingLeft="22.5dp"
+    android:paddingRight="22.5dp"
+    android:paddingTop="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <RelativeLayout
+            android:id="@+id/mine_achievedata_dialog_photo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="60dp"
+            android:background="@drawable/mine_achievedata_photo_background"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/mine_achievedata_dialog_photo"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_below="@+id/mine_achievedata_dialog_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="77.5dp"
+            android:gravity="center"
+            android:text="相机"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+
+        <RelativeLayout
+            android:id="@+id/mine_achievedata_dialog_file"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:background="@drawable/mine_achievedata_photo_background"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/mine_achievedata_dialog_file"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_below="@+id/mine_achievedata_dialog_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="77.5dp"
+            android:gravity="center"
+            android:text="文件"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+
+        <Button
+            android:id="@+id/btn_achievedata_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/mine_achievedata_dialog_back"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/blue"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -53,4 +53,7 @@ dependencies {
 
     //FlowLayout
     implementation 'com.hyman:flowlayout-lib:1.1.2'
+
+    //EventBus
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }

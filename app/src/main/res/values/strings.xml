@@ -29,4 +29,6 @@
     <string name="mine_cost_query_month">1个月</string>
     <string name="mine_cost_query_months">3个月</string>
     <string name="mine_cost_query_year">1年</string>
+
+    <string name="mine_btn_achieve_data_dialog_back">上传中...</string>
 </resources>

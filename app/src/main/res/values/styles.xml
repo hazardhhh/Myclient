@@ -197,7 +197,7 @@
         <item name="android:windowExitAnimation">@anim/find_bottom_dialog_out</item>
     </style>
 
-    <!-- 消息页面底部对话框 -->
+    <!-- 消息页面顶部对话框 -->
     <style name="Message_TopDialog" parent="android:Theme.Dialog" >
         <item name="android:windowAnimationStyle">@style/AnimTop2</item>
         <item name="android:windowFrame">@null</item><!--边框-->
