@@ -51,37 +51,15 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
         if(!EventBus.getDefault().isRegistered(this)){
             EventBus.getDefault().register(this);
         }
-
-//        if(savedInstanceState!=null){
-//            String showIcon=savedInstanceState.getString("saveIcon");
-//            if(showIcon != "") {
-//                //将字符串转为图片
-//                byte[] decode = Base64.decode(showIcon.getBytes(), 1);
-//                bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
-//                //将图片转为圆形
-//                bitmap = ImageUtils.toRoundBitmap(bitmap);
-//                iv_mine_default_icon.setImageBitmap(bitmap);
-//                }
-//            String sIcon=SharedPrefUtil.getString(mContext,"sIcon","");
-//            if(sIcon != "") {
-//                //将字符串转为图片
-//                byte[] decode = Base64.decode(sIcon.getBytes(), 1);
-//                bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
-//                //将图片转为圆形
-//                bitmap = ImageUtils.toRoundBitmap(bitmap);
-//                iv_mine_default_icon.setImageBitmap(bitmap);
-//            }
-
-//        }
     }
 
     //使用EventBus传递数据
-//    public String saveIcon;
+    public String saveIcon;
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void Event(Event event) {
         //event就是拿到接收的数据
-//        saveIcon=event.getAchieveDataPhone();
-//        SharedPrefUtil.putString(mContext,"sIcon",saveIcon);
+        saveIcon=event.getAchieveDataPhone();
+        SharedPrefUtil.putString(mContext,"sIcon",saveIcon);
         if(event.getAchieveDataPhone() != "") {
             //将字符串转为图片
             byte[] decode = Base64.decode(event.getAchieveDataPhone().getBytes(), 1);
@@ -91,29 +69,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
             iv_mine_default_icon.setImageBitmap(bitmap);
         }
     }
-
-//    @Override
-//    public void onSaveInstanceState(@NonNull Bundle outState) {
-//        String sIcon=SharedPrefUtil.getString(mContext,"sIcon","");
-//        outState.putString("saveIcon",sIcon);
-//        super.onSaveInstanceState(outState);
-//    }
-
-//    @Override
-//    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-//        super.onViewStateRestored(savedInstanceState);
-//        if(savedInstanceState!=null){
-//            String showIcon=savedInstanceState.getString("saveIcon");
-//            if(showIcon != "") {
-//                //将字符串转为图片
-//                byte[] decode = Base64.decode(showIcon.getBytes(), 1);
-//                bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
-//                //将图片转为圆形
-//                bitmap = ImageUtils.toRoundBitmap(bitmap);
-//                iv_mine_default_icon.setImageBitmap(bitmap);
-//            }
-//        }
-//    }
 
     @Override
     protected void initWidget(Bundle savedInstanceState) {
@@ -156,14 +111,23 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
         }
     }
 
+
     @Override
-    protected void beforeDestroy() {
-        EventBus.getDefault().unregister(this);
+    public void onResume() {
+        super.onResume();
+        String sIcon=SharedPrefUtil.getString(mContext,"sIcon","");
+        if(sIcon != "") {
+            //将字符串转为图片
+            byte[] decode = Base64.decode(sIcon.getBytes(), 1);
+            bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+            //将图片转为圆形
+            bitmap = ImageUtils.toRoundBitmap(bitmap);
+            iv_mine_default_icon.setImageBitmap(bitmap);
+        }
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        iv_mine_default_icon.setImageBitmap(bitmap);
+    protected void beforeDestroy() {
+        EventBus.getDefault().unregister(this);
     }
 }
