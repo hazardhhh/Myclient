@@ -232,8 +232,7 @@ public class PersonIntroduceActivity extends BaseActivity implements View.OnClic
                 case TAKE_PICTURES:
                     // 对图片解析成Bitmap显示出来
                     try {
-                        Bitmap bitmap = BitmapFactory.decodeStream(
-                                getContentResolver().openInputStream(tempUri));
+                        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(tempUri));
                         Drawable drawable = new BitmapDrawable(bitmap);
                         mine_person_photo.setBackground(drawable);
                     } catch (FileNotFoundException e) {
