@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -45,6 +46,8 @@ public class AchieveDataActivity extends BaseActivity implements View.OnClickLis
 
     @BindView(R.id.achievedata_photo)
     ImageView achievedata_photo;
+    @BindView(R.id.button_mine_achieve_data)
+    Button button_mine_achieve_data;
 
     public Dialog mCameraDialog;
 
@@ -69,12 +72,16 @@ public class AchieveDataActivity extends BaseActivity implements View.OnClickLis
         super.initWidget();
     }
 
-    @OnClick({R.id.achievedata_photo})
+    @OnClick({R.id.achievedata_photo,R.id.button_mine_achieve_data})
     public void onClick_BottomDialog(View view){
         switch (view.getId()){
             case R.id.achievedata_photo:
                 showBottomDialog();
                 break;
+
+            case R.id.button_mine_achieve_data:
+                finish();
+                ToastUtils.show(mContext,R.string.mine_btn_achieve_data_dialog_back);
 
             default:
                 break;
@@ -112,7 +119,6 @@ public class AchieveDataActivity extends BaseActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.mine_achievedata_dialog_photo:
                 takePicture();
-//                ToastUtils.show(mContext,R.string.mine_btn_achieve_data_dialog_back);
                 mCameraDialog.dismiss();
                 break;
 
@@ -121,6 +127,7 @@ public class AchieveDataActivity extends BaseActivity implements View.OnClickLis
                 openAlbumIntent.setType("image/*");
                 startActivityForResult(openAlbumIntent, CHOOSE_FILES);
                 mCameraDialog.dismiss();
+                ToastUtils.show(mContext,R.string.mine_btn_achieve_data_dialog_back);
                 break;
 
             case R.id.btn_achievedata_cancel:
@@ -163,6 +170,7 @@ public class AchieveDataActivity extends BaseActivity implements View.OnClickLis
         tempUri = uri;
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
+        //需加的设置
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         // 设置裁剪
@@ -185,7 +193,8 @@ public class AchieveDataActivity extends BaseActivity implements View.OnClickLis
         Bundle extras = data.getExtras();
         if (extras != null) {
             Bitmap photo = extras.getParcelable("data");
-            photo = ImageUtils.toRoundBitmap(photo); // 这个时候的图片已经被处理成圆形的了
+            // 图片处理成圆形的
+            photo = ImageUtils.toRoundBitmap(photo);
             achievedata_photo.setImageBitmap(photo);
 //            savePhoto(photo);
 
@@ -218,7 +227,7 @@ public class AchieveDataActivity extends BaseActivity implements View.OnClickLis
                 bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
             }
 
-            //发送事件
+            //EventBus发送事件
             EventBus.getDefault().post(new Event(icon));
 
             savePhoto(bitmap);
@@ -230,26 +239,30 @@ public class AchieveDataActivity extends BaseActivity implements View.OnClickLis
         String imagePath = ImageUtils.savePhoto(bitmap, Environment
                 .getExternalStorageDirectory().getAbsolutePath(), imagename + ".png");
         if(imagePath!=null){
-            Log.i(TAG,"Success");
+            // TODO:update to server
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) { // 如果返回码是可以用的
+        // 如果返回码是可以用的
+        if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case TAKE_PICTURES:
-                    startPhotoZoom(tempUri); // 开始对图片进行裁剪处理
+                    // 开始对图片进行裁剪处理
+                    startPhotoZoom(tempUri);
                     break;
 
                 case CHOOSE_FILES:
-                    startPhotoZoom(data.getData()); // 开始对图片进行裁剪处理
+                    // 开始对图片进行裁剪处理
+                    startPhotoZoom(data.getData());
                     break;
 
                 case CROP_SMALL_PICTURES:
                     if (data != null) {
-                        setImageToView(data); // 让刚才选择裁剪得到的图片显示在界面上
+                        // 让刚才选择裁剪得到的图片显示在界面上
+                        setImageToView(data);
                     }
                     break;
 

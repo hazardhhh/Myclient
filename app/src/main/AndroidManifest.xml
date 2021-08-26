@@ -14,8 +14,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <!-- 调用相机权限 -->
-    <uses-permission android:name="android.permission.CAMERA" /> <!-- 读取sd卡权限 -->
-<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 读取sd卡权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 
@@ -51,7 +51,7 @@
         <activity android:name=".ui.activity.AchieveDataActivity"
                 android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.activity.PersonIntroduce"
+        <activity android:name=".ui.activity.PersonIntroduceActivity"
                 android:screenOrientation="portrait"/>
 
         <activity android:name=".ui.activity.CostQueryActivity"
@@ -59,7 +59,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileProvider"
+            android:authorities="com.example.client.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

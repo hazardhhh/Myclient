@@ -1,10 +1,8 @@
 package com.example.client.ui.fragment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
@@ -12,15 +10,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.example.client.R;
 import com.example.client.base.BaseFragment;
 import com.example.client.model.event.Event;
 import com.example.client.ui.activity.AchieveDataActivity;
 import com.example.client.ui.activity.CostQueryActivity;
-import com.example.client.ui.activity.PersonIntroduce;
+import com.example.client.ui.activity.PersonIntroduceActivity;
 import com.example.client.utils.ImageUtils;
 import com.example.client.utils.SharedPrefUtil;
 
@@ -97,7 +92,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
                 break;
 
             case R.id.person_introduce_show:
-                Intent intent_mine_person_introduce=new Intent(getActivity(), PersonIntroduce.class);
+                Intent intent_mine_person_introduce=new Intent(getActivity(), PersonIntroduceActivity.class);
                 getActivity().startActivity(intent_mine_person_introduce);
                 break;
 
@@ -112,6 +107,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
     }
 
 
+    /**
+     *  数据持久化存储
+     */
     @Override
     public void onResume() {
         super.onResume();
