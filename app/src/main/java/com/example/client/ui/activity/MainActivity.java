@@ -2,6 +2,7 @@ package com.example.client.ui.activity;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
@@ -39,6 +40,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+
 /**
  *
  */
@@ -66,7 +68,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private RelativeLayout layout_contacts;
     private RelativeLayout layout_find;
 //    private RelativeLayout layout_mine;
-
 
     /**
      *  仿QQ下拉刷新

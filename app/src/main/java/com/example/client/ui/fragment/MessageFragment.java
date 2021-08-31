@@ -3,10 +3,16 @@ package com.example.client.ui.fragment;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.client.R;
 import com.example.client.base.BaseFragment;
@@ -40,6 +46,7 @@ public class MessageFragment extends BaseFragment {
         MessageAdapter adapter = new MessageAdapter();
         //设置适配器
         listView.setAdapter(adapter);
+
     }
 
     class MessageAdapter extends BaseAdapter {

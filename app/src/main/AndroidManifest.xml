@@ -45,6 +45,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".login.LoginActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+
         <activity android:name=".ui.activity.MessageTopDialogActivity"
                 android:theme="@style/Message_TopDialog"/>
 

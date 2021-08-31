@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#708090</color>
+    <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#708090</color>
     <color name="colorAccent">#708090</color>
 
@@ -156,4 +156,10 @@
     <color name="color_focused">#E45242</color>
     <color name="color_un_focused">#222222</color>
 
+    <!-- toolbar的弹出菜单 -->
+    <color name="toolbar_text_color">#181818</color>
+
+    <color name="color_white_66ffffff">#66ffffff</color>
+    <color name="color_blue_3D7FFF">#3D7FFF</color>
+    <color name="color_grey_999999">#999999</color>
 </resources>

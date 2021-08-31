@@ -55,9 +55,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
         //event就是拿到接收的数据
         saveIcon=event.getAchieveDataPhone();
         SharedPrefUtil.putString(mContext,"sIcon",saveIcon);
-        if(event.getAchieveDataPhone() != "") {
+        if(saveIcon != "") {
             //将字符串转为图片
-            byte[] decode = Base64.decode(event.getAchieveDataPhone().getBytes(), 1);
+            byte[] decode = Base64.decode(saveIcon.getBytes(), 1);
             bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
             //将图片转为圆形
             bitmap = ImageUtils.toRoundBitmap(bitmap);

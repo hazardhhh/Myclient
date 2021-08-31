@@ -7,6 +7,7 @@ import android.os.Handler;
 
 import com.example.client.R;
 import com.example.client.base.BaseActivity;
+import com.example.client.login.LoginActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,7 +29,7 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void run() {
                 /*页面跳转到主要页面*/
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
                 SplashActivity.this.finish(); //结束当前activity
             }
