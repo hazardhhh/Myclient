@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true">
+        <!-- 定义当button 处于pressed 状态时的形态。-->
+        <shape>
+            <solid android:color="@color/split_line_grey_color_d9d9d9" />
+            <!-- 设置按钮的四个角为弧形 -->
+            <!-- android:radius 弧形的半径 -->
+            <corners android:bottomRightRadius="5dip" />
+            <!-- padding：Button里面的文字与Button边界的间隔 -->
+        </shape>
+    </item>
+    <item >
+        <!-- 定义button默认时的形态-->
+        <shape>
+            <solid android:color="@color/white" />
+            <!-- 设置按钮的四个角为弧形 -->
+            <!-- android:radius 弧形的半径 -->
+            <corners android:bottomRightRadius="5dip" />
+            <!-- padding：Button里面的文字与Button边界的间隔 -->
+
+        </shape>
+    </item>
+</selector>

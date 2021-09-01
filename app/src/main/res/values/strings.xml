@@ -1,4 +1,7 @@
 <resources>
+    <string name="server_ip_qqtech">eco.lingzhuyun.com</string>
+    <string name="server_port_qqtech">8092</string>
+
     <string name="app_name">微聊</string>
     <string name="empty"></string>
     <string name="message_toolbar_change">信息</string>
@@ -38,4 +41,11 @@
     <string name="register_input_password">6位以上,数字字母组合,含有大小写字母</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
+
+    <string name="clear_empty">清空</string>
+    <string name="iknow">知道了</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确定</string>
+    <string name="kickout_notify">下线通知</string>
+    <string name="kickout_content">你的帐号被%1$s踢出下线，请确定帐号信息安全</string>
 </resources>
