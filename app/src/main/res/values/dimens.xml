@@ -35,4 +35,8 @@
     <dimen name="card_margin_top">10dp</dimen>
     <dimen name="card_margin_buttom">6dp</dimen>
     <dimen name="card_margin_let_right">10dp</dimen>
+
+    <!-- avatar -->
+    <dimen name="avatar_notification_size">48dip</dimen>
+    <dimen name="avatar_max_size">60dip</dimen>
 </resources>

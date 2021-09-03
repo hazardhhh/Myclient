@@ -53,7 +53,8 @@
                     android:id="@+id/login_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    >
 
                     <com.example.client.widget.ClearableEditTextWithIcon
                         android:id="@+id/edit_login_account"
@@ -126,7 +127,7 @@
                     <com.example.client.widget.ClearableEditTextWithIcon
                         android:id="@+id/edit_register_account"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:background="@drawable/edittext_white_normal"
                         android:digits="1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:drawablePadding="15dp"
@@ -134,30 +135,42 @@
                         android:inputType="text"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/color_white_66ffffff"
+                        android:textColor="@color/black"
                         android:textCursorDrawable="@drawable/my_cursor"
                         android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="#EEEEEE"/>
 
                     <com.example.client.widget.ClearableEditTextWithIcon
                         android:id="@+id/edit_register_nickname"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:background="@drawable/edittext_white_normal"
                         android:drawablePadding="15dp"
                         android:hint="@string/register_input_name"
                         android:inputType="text"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/color_white_66ffffff"
+                        android:textColor="@color/black"
                         android:textCursorDrawable="@drawable/my_cursor"
                         android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="#EEEEEE"/>
 
                     <com.example.client.widget.ClearableEditTextWithIcon
                         android:id="@+id/edit_register_password"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
                         android:background="@drawable/edittext_white_normal"
                         android:drawablePadding="15dp"
                         android:hint="@string/register_input_password"
@@ -166,9 +179,15 @@
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
                         android:textColor="@color/white"
-                        android:textColorHint="@color/color_white_66ffffff"
                         android:textCursorDrawable="@drawable/my_cursor"
                         android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="#EEEEEE"/>
                 </LinearLayout>
             </FrameLayout>
 

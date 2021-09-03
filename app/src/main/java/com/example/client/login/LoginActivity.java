@@ -4,6 +4,7 @@ package com.example.client.login;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,24 +18,41 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.example.client.R;
 import com.example.client.base.UI;
+import com.example.client.common.ui.dialog.DialogMaker;
 import com.example.client.common.ui.dialog.EasyAlertDialogHelper;
+import com.example.client.config.Constant;
+import com.example.client.contact.ContactHttpClient;
 import com.example.client.permission.MPermission;
+import com.example.client.share.SystemShareActivity;
+import com.example.client.ui.activity.MainActivity;
+import com.example.client.utils.GlobalToastUtils;
 import com.example.client.utils.PreferencesUcStar;
+import com.example.client.utils.ToastUtils;
+import com.example.client.utils.UcstarUIKit;
+import com.example.client.utils.log.LogUtil;
+import com.example.client.utils.sys.NetworkUtil;
 import com.example.client.utils.sys.ScreenUtil;
 import com.example.client.widget.ClearableEditTextWithIcon;
+import com.ucstar.android.SDKGlobal;
 import com.ucstar.android.sdk.AbortableFuture;
 import com.ucstar.android.sdk.Observer;
+import com.ucstar.android.sdk.RequestCallback;
+import com.ucstar.android.sdk.ResponseCode;
 import com.ucstar.android.sdk.StatusCode;
 import com.ucstar.android.sdk.UcSTARSDKClient;
 import com.ucstar.android.sdk.auth.AuthService;
 import com.ucstar.android.sdk.auth.ClientType;
 import com.ucstar.android.sdk.auth.LoginInfo;
+
+import butterknife.internal.Constants;
 
 /**
  *  登录/注册界面
@@ -75,6 +93,9 @@ public class LoginActivity extends UI implements View.OnKeyListener {
     private int requestCode; //请求码
     private int clickCount;
     private long currentClickTime; //现在点击时间
+
+    private String dAccount = "111111"; //默认账号
+    private String dPassword = "111111"; //默认密码
 
     /**
      *  文本监听接口
@@ -130,6 +151,9 @@ public class LoginActivity extends UI implements View.OnKeyListener {
         return false;
     }
 
+    /**
+     * 若果另外一个activity启动该activity(该activity已经存在)想给该activity传递数据,那么就用到了onNewIntent()方法
+     */
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -140,7 +164,7 @@ public class LoginActivity extends UI implements View.OnKeyListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-        requestBasicPermission();
+        requestBasicPermission(); //基本权限管理
 
         onParseIntent(); //登录端口类型
         initEvent(); //验证码登录，忘记密码，密码图标显示与隐藏
@@ -157,6 +181,7 @@ public class LoginActivity extends UI implements View.OnKeyListener {
             }
         });
 
+        //app logo
         findViewById(R.id.iv_app_logo).setOnClickListener(v -> {
             //TODO:blankj.utilcode包
 //            LogUtils.d("clickCount : " + clickCount);
@@ -266,6 +291,7 @@ public class LoginActivity extends UI implements View.OnKeyListener {
         flForgetPsw = findViewById(R.id.fl_forget_psw);
         flForgetPsw.setOnClickListener(v -> {
             //TODO:forgetpsw
+            switchMode();
         });
         ivShowPsw = findViewById(R.id.iv_show_psw);
         ivShowPsw.setOnClickListener(v -> {
@@ -303,6 +329,25 @@ public class LoginActivity extends UI implements View.OnKeyListener {
         loginPasswordEdit.setOnKeyListener(this);
 //        String account = PreferencesUcStar.getUserAccount();
 //        loginAccountEdit.setText(account);
+
+
+        //demo text
+        TextView textView = findViewById(R.id.tv_login_btn);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mAccount = loginAccountEdit.getText().toString();
+                String mPassword = loginPasswordEdit.getText().toString();
+
+                if (! mAccount.equals(dAccount) || ! mPassword.equals(dPassword)){
+                    ToastUtils.show(LoginActivity.this, "账号无效");
+                } else {
+                    Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
     }
 
     /**
@@ -330,6 +375,79 @@ public class LoginActivity extends UI implements View.OnKeyListener {
      */
 
     private void login() {
+        DialogMaker.showProgressDialog(this, null, getString(R.string.logining), true, new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                if (loginRequest != null) {
+                    loginRequest.abort();
+                    onLoginDone();
+                }
+            }
+        }).setCanceledOnTouchOutside(false); //点击Dialog以外的区域时Dialog消失(true)
+
+        final String account = loginAccountEdit.getEditableText().toString().toLowerCase().trim();
+        String password = loginPasswordEdit.getEditableText().toString();
+        String serverIpToken = PreferencesUcStar.getServerIpToken();
+        String serverPortToken = PreferencesUcStar.getServerPortToken();
+        String baseUrl = "http://" + serverIpToken + ":" + serverPortToken + "/";
+
+        //登录
+        loginRequest = UcstarUIKit.doLogin(baseUrl, account, password, new RequestCallback<LoginInfo>() {
+
+            @Override
+            public void onSuccess(LoginInfo param) {
+                LogUtil.i(TAG, "login success");
+                onLoginDone();
+                if (requestCode == SystemShareActivity.REQUEST_CODE_LOGIN) {
+                    setResult(RESULT_OK);
+                } else {
+                    // 进入主界面 记录当前登录密码 主页面判断是否是初始化密码
+                    //blankj:utilcode SPUtils SP 相关
+                    SPUtils.getInstance().put(Constant.KEY_PASSWORD, password);
+                    //注销
+                    LogoutHelper.onlogin(0);
+                }
+                finish();
+            }
+
+            @Override
+            public void onFailed(int code) {
+                onLoginDone();
+                if (code == 4001) { //4001不存在 4002密码错误
+                    GlobalToastUtils.showErrorShort(R.string.login_account_not);
+                } else if (code == 4002) {
+                    GlobalToastUtils.showErrorShort(R.string.login_password_error);
+                } else if (code == 4005) {
+                    GlobalToastUtils.showErrorShort("登录失败, 无可用服务: " + code);
+                } else if (code == 302 || code == 404) {
+                    GlobalToastUtils.showErrorShort(R.string.login_failed);
+                } else if (code == ResponseCode.RES_FORBIDDEN) {
+                    int errorcode = SDKGlobal.getErrorCode();
+                    String errMsg = "登录失败";
+                    if (errorcode == 500) {
+                        errMsg = "您的许可证已经到期，请尽快联系管理员检查并且更换新的许可证！";
+                    } else if (errorcode == 501) {
+                        errMsg = "当前在线人数已超出限制，您被禁止登陆，请联系管理员处理！";
+                    }
+                    GlobalToastUtils.showErrorShort(errMsg);
+                } else {
+                    GlobalToastUtils.showErrorShort("登录失败,请检查地址和网络");
+                }
+
+            }
+
+            @Override
+            public void onException(Throwable throwable) {
+                GlobalToastUtils.showErrorLong(R.string.login_exception);
+                onLoginDone();
+            }
+        });
+
+    }
+
+    private void onLoginDone() {
+        loginRequest = null;
+        DialogMaker.dismissProgressDialog();
     }
 
     /**
@@ -337,6 +455,120 @@ public class LoginActivity extends UI implements View.OnKeyListener {
      */
 
     private void register() {
+        if (!registerMode || !registerPanelInited) {
+            return;
+        }
+
+        if (!checkRegisterContentValid()) {
+            return;
+        }
+
+        if (!NetworkUtil.isNetAvailable(LoginActivity.this)) {
+            GlobalToastUtils.showNormalShort(R.string.network_is_not_available);
+            return;
+        }
+
+        DialogMaker.showProgressDialog(this, getString(R.string.registering), false);
+
+        // 注册流程
+        final String account = registerAccountEdit.getText().toString();
+        final String nickName = registerNickNameEdit.getText().toString();
+        final String password = registerPasswordEdit.getText().toString();
+
+        ContactHttpClient.getInstance().register(account, nickName, password, new ContactHttpClient.ContactHttpCallback<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                GlobalToastUtils.showNormalShort(R.string.register_success);
+
+                switchMode();  // 切换回登录
+                loginAccountEdit.setText(account);
+                loginPasswordEdit.setText(password);
+
+                registerAccountEdit.setText("");
+                registerNickNameEdit.setText("");
+                registerPasswordEdit.setText("");
+
+                DialogMaker.dismissProgressDialog();
+            }
+
+            @Override
+            public void onFailed(int code, String errorMsg) {
+                GlobalToastUtils.showErrorShort(getString(R.string.register_failed, String.valueOf(code), errorMsg));
+                DialogMaker.dismissProgressDialog();
+            }
+        });
+    }
+
+    private boolean checkRegisterContentValid() {
+        if (!registerMode || !registerPanelInited) {
+            return false;
+        }
+
+        // 帐号检查
+        String account = registerAccountEdit.getText().toString().trim();
+        if (account.length() <= 0 || account.length() > 20) {
+            Toast.makeText(this, R.string.register_account_tip, Toast.LENGTH_SHORT);
+
+            return false;
+        }
+
+        // 昵称检查
+        String nick = registerNickNameEdit.getText().toString().trim();
+        if (nick.length() <= 0 || nick.length() > 10) {
+            Toast.makeText(this, R.string.register_nick_name_tip, Toast.LENGTH_SHORT);
+
+            return false;
+        }
+
+        // 密码检查
+        String password = registerPasswordEdit.getText().toString().trim();
+        if (password.length() < 6 || password.length() > 20) {
+            Toast.makeText(this, R.string.register_password_tip, Toast.LENGTH_SHORT);
+
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * ***************************************** 注册/登录切换 **************************************
+     */
+    private void switchMode() {
+        registerMode = !registerMode;
+
+        if (registerMode && !registerPanelInited) {
+            registerAccountEdit = findView(R.id.edit_register_account);
+            registerNickNameEdit = findView(R.id.edit_register_nickname);
+            registerPasswordEdit = findView(R.id.edit_register_password);
+
+            registerAccountEdit.setIconResource(R.drawable.user_account_icon);
+            registerNickNameEdit.setIconResource(R.drawable.user_account_icon);
+            registerPasswordEdit.setIconResource(R.drawable.user_pwd_lock_icon);
+
+            registerAccountEdit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
+            registerNickNameEdit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
+            registerPasswordEdit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(20)});
+
+            registerAccountEdit.addTextChangedListener(textWatcher);
+            registerNickNameEdit.addTextChangedListener(textWatcher);
+            registerPasswordEdit.addTextChangedListener(textWatcher);
+
+            registerPanelInited = true;
+        }
+
+        setTitle(registerMode ? R.string.register : R.string.login);
+        loginLayout.setVisibility(registerMode ? View.GONE : View.VISIBLE);
+        rightTopBtn.setText(registerMode ? R.string.done : R.string.login);
+        registerLayout.setVisibility(registerMode ? View.VISIBLE : View.GONE);
+//        switchModeBtn.setText(registerMode ? R.string.login_has_account : R.string.register);
+        if (registerMode) {
+            rightTopBtn.setEnabled(true);
+        } else {
+            boolean isEnable = loginAccountEdit.getText().length() > 0
+                    && loginPasswordEdit.getText().length() > 0;
+            rightTopBtn.setEnabled(isEnable);
+        }
     }
 
     /**
