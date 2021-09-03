@@ -97,6 +97,7 @@ public class LoginActivity extends UI implements View.OnKeyListener {
     private String dAccount = "111111"; //默认账号
     private String dPassword = "111111"; //默认密码
 
+
     /**
      *  文本监听接口
      */
