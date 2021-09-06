@@ -61,6 +61,40 @@ public class UcstarUIKit {
         return loginRequest;
     }
 
+    /**
+     * 验证码登录
+     *
+     * @param serverUrl  当前服务器地址 ip + port
+     * @param account    手机号
+     * @param verifyCode 验证码
+     * @param callback   登录结果回调
+     * @return
+     */
+    public static AbortableFuture<LoginInfo> doLoginByVerifyCode(String serverUrl, String account, String verifyCode, final RequestCallback<LoginInfo> callback) {
+
+        AbortableFuture<LoginInfo> loginRequest = UcSTARSDKClient.getService(AuthService.class).login3(serverUrl, account, verifyCode, "{\"type\":5}");
+        loginRequest.setCallback(new RequestCallback<LoginInfo>() {
+            @Override
+            public void onSuccess(LoginInfo loginInfo) {
+
+                PreferencesUcStar.saveUserAccount(loginInfo.getAccount());
+                initBiz();
+                callback.onSuccess(loginInfo);
+            }
+
+            @Override
+            public void onFailed(int code) {
+                callback.onFailed(code);
+            }
+
+            @Override
+            public void onException(Throwable exception) {
+                callback.onException(exception);
+            }
+        });
+        return loginRequest;
+    }
+
     public static ImageLoaderKit getImageLoaderKit() {
         return imageLoaderKit;
     }

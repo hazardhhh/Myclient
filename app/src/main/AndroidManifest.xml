@@ -27,7 +27,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.SplashActivity"
+        <activity android:name="com.example.client.ui.activity.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.MainActivity"
+        <activity android:name="com.example.client.ui.activity.MainActivity"
             android:alwaysRetainTaskState="true">
             <intent-filter>
 <!--                <action android:name="android.intent.action.MAIN" />-->
@@ -46,22 +46,29 @@
         </activity>
 
         <activity
-            android:name=".login.LoginActivity"
+            android:name="com.example.client.login.LoginActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize|stateHidden"/>
 
-        <activity android:name=".ui.activity.MessageTopDialogActivity"
+        <activity
+            android:name="com.example.client.login.VerifyCodeLoginActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity android:name="com.example.client.ui.activity.MessageTopDialogActivity"
                 android:theme="@style/Message_TopDialog"/>
 
-        <activity android:name=".ui.activity.AchieveDataActivity"
+        <activity android:name="com.example.client.ui.activity.AchieveDataActivity"
                 android:screenOrientation="portrait" />
 
-        <activity android:name=".ui.activity.PersonIntroduceActivity"
+        <activity android:name="com.example.client.ui.activity.PersonIntroduceActivity"
                 android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.activity.CostQueryActivity"
+        <activity android:name="com.example.client.ui.activity.CostQueryActivity"
                 android:screenOrientation="portrait"/>
 
         <provider

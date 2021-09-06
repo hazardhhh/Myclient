@@ -165,6 +165,9 @@ public class LoginActivity extends UI implements View.OnKeyListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+        //初始化 GlobalToastUtils
+        GlobalToastUtils.init(this);
+
         requestBasicPermission(); //基本权限管理
 
         onParseIntent(); //登录端口类型
@@ -287,7 +290,7 @@ public class LoginActivity extends UI implements View.OnKeyListener {
     private void initEvent() {
         flPhoneLogin = findViewById(R.id.fl_phone_login);
         flPhoneLogin.setOnClickListener(v -> {
-            //TODO:vertifycodelogin
+            VerifyCodeLoginActivity.start(LoginActivity.this);
         });
         flForgetPsw = findViewById(R.id.fl_forget_psw);
         flForgetPsw.setOnClickListener(v -> {

@@ -64,4 +64,10 @@
     <string name="register_password_tip">密码必须为6~20位字母或者数字</string>
     <string name="done">完成</string>
     <string name="login_has_account">已有帐号？直接登录</string>
+    <string name="login_hint_phone">请输手机号</string>
+    <string name="login_hint_verify_code">请输入验证码</string>
+    <string name="get_verify_code">获取验证码</string>
+    <string name="login_by_account">账号密码登录</string>
+    <string name="verify_code_error">验证码错误</string>
+    <string name="login_failed_account_or_verify_code_error">帐号或验证码错误</string>
 </resources>
