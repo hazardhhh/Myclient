@@ -99,6 +99,7 @@ public class RegisterActivity extends UI implements View.OnClickListener, TextWa
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_get_verify_code:
+                //TODO: requestVerifyCode
 //                requestVerifyCode();
                 break;
             case R.id.tv_service_agreement:
