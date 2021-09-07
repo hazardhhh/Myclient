@@ -220,6 +220,7 @@ public class RegisterActivity extends UI implements View.OnClickListener, TextWa
         jsonObject.addProperty("name", name);
         jsonObject.addProperty("code", code);
         jsonObject.addProperty("source", 1);
+        // MediaType指的是要传递的数据的MIME类型
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
         service.register(body).enqueue(new Callback<ResponseBody>() {
             @Override
