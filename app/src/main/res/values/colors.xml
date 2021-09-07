@@ -172,4 +172,5 @@
     <color name="color_black_b3000000">#b3000000</color>
     <color name="color_gray_666666">#666666</color>
     <color name="color_text_B2B2B2">#B2B2B2</color>
+    <color name="color_text_e2e2e2">#E2E2E2</color>
 </resources>

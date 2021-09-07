@@ -59,6 +59,13 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize|stateHidden" />
 
+        <activity
+            android:name="com.example.client.login.RegisterActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
         <activity android:name="com.example.client.ui.activity.MessageTopDialogActivity"
                 android:theme="@style/Message_TopDialog"/>
 

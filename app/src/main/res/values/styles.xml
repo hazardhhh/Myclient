@@ -268,4 +268,9 @@
         <!-- 后面的activity变暗 -->
     </style>
 
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/color_text_333333</item>
+        <item name="colorControlActivated">@color/color_blue_3D7FFF</item>
+    </style>
+
 </resources>

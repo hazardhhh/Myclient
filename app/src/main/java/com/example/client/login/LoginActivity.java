@@ -295,7 +295,8 @@ public class LoginActivity extends UI implements View.OnKeyListener {
         flForgetPsw = findViewById(R.id.fl_forget_psw);
         flForgetPsw.setOnClickListener(v -> {
             //TODO:forgetpsw
-            switchMode();
+//            switchMode();
+            RegisterActivity.startRegisterActivity(LoginActivity.this);
         });
         ivShowPsw = findViewById(R.id.iv_show_psw);
         ivShowPsw.setOnClickListener(v -> {
