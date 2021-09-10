@@ -173,4 +173,17 @@
     <color name="color_gray_666666">#666666</color>
     <color name="color_text_B2B2B2">#B2B2B2</color>
     <color name="color_text_e2e2e2">#E2E2E2</color>
+    <color name="bg_main_color">#F3F5F8</color>
+    <color name="color_black_333333">#333333</color>
+    <color name="color_grey_ababab">#ababab</color>
+    <color name="color_blue_0888ff">#0888ff</color>
+    <color name="color_grey_eaeaea">#eaeaea</color>
+    <color name="white_F5">#F5F5F5</color>
+    <color name="color_blue_4583FF">#4583FF</color>
+    <color name="color_blue_1677FF">#1677FF</color>
+    <color name="color_gray_ffcccccc">#ffcccccc</color>
+    <color name="color_gray_D8D8D8">#D8D8D8</color>
+    <color name="main_color_4876F9">#4876F9</color>
+    <color name="color_split_line_cccccc">#cccccc</color>
+
 </resources>

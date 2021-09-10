@@ -70,4 +70,27 @@
     <string name="login_by_account">账号密码登录</string>
     <string name="verify_code_error">验证码错误</string>
     <string name="login_failed_account_or_verify_code_error">帐号或验证码错误</string>
+    <string name="user_bind_phone">绑定手机号码</string>
+    <string name="user_bind_text_current_phone">当前手机号</string>
+    <string name="user_bind_text_current_phone_number">13177778888</string>
+    <string name="user_bind_text_hint_first">此手机号将显示在个人信息中，</string>
+    <string name="user_bind_text_hint_second">你也可以使用此手机号登录。</string>
+    <string name="user_change_phone">更换手机号</string>
+    <string name="user_change_phone_text_verify_identity">身份验证</string>
+    <string name="user_change_phone_hint_first">你正在修改登录手机号，请先完成身份验证。验证码已发送</string>
+    <string name="user_change_phone_hint_second">至：</string>
+    <string name="user_change_phone_current_phone">+8613177778888</string>
+    <string name="user_change_phone_countdown">60</string>
+    <string name="user_change_phone_hint_countdown">秒后重新发送验证码</string>
+    <string name="user_change_phone_hint_third">手机号已停用？</string>
+    <string name="user_change_phone_retrieve">找回账号</string>
+    <string name="user_alter_phone">修改登录手机号</string>
+    <string name="user_alter_phone_hint_first">你正在修改登录手机号，请输入新手机号完成修改</string>
+    <string name="user_alter_phone_hint_second">当前手机号：</string>
+    <string name="user_alter_phone_hint_third">+ 86</string>
+    <string name="user_alter_phone_edit_hint">请输入你的手机号</string>
+    <string name="user_alter_phone_hint_forth">登录手机号码修改后，原手机号将无法用于登录。</string>
+    <string name="user_alert_phone_confirm_alert">确认修改</string>
+    <string name="user_identity_verify_getverify_again">重新获取验证码</string>
+    <string name="user_identity_verify_hint_first">验证码已发送至：</string>
 </resources>
