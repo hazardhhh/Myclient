@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_verify_again"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_24"
+        android:text="@string/user_change_phone_text_verify_identity"
+        android:textColor="@color/color_black_333333"
+        android:textSize="@dimen/text_size_24"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_identity_verify_hint_first"
+            android:textColor="@color/color_grey_999999"
+            android:textSize="@dimen/text_size_14" />
+
+        <TextView
+            android:id="@+id/tv_phone_num_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_black_333333"
+            android:textSize="@dimen/text_size_14"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_20"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_new_first_num"
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_48"
+            android:background="@drawable/selector_bg_verify_code"
+            android:digits="0123456789"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_black_333333"
+            android:textCursorDrawable="@drawable/my_cursor"
+            android:textSize="@dimen/text_size_24" />
+
+        <EditText
+            android:id="@+id/et_new_second_num"
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_48"
+            android:layout_marginStart="@dimen/dp_20"
+            android:background="@drawable/selector_bg_verify_code"
+            android:digits="0123456789"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_black_333333"
+            android:textCursorDrawable="@drawable/my_cursor"
+            android:textSize="@dimen/text_size_24" />
+
+        <EditText
+            android:id="@+id/et_new_third_num"
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_48"
+            android:layout_marginStart="@dimen/dp_20"
+            android:background="@drawable/selector_bg_verify_code"
+            android:digits="0123456789"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_black_333333"
+            android:textCursorDrawable="@drawable/my_cursor"
+            android:textSize="@dimen/text_size_24" />
+
+        <EditText
+            android:id="@+id/et_new_fourth_num"
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_48"
+            android:layout_marginStart="@dimen/dp_20"
+            android:background="@drawable/selector_bg_verify_code"
+            android:digits="0123456789"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_black_333333"
+            android:textCursorDrawable="@drawable/my_cursor"
+            android:textSize="@dimen/text_size_24" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_get_verify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:text="@string/user_identity_verify_getverify_again"
+        android:textColor="@color/main_color_4876F9"
+        android:textSize="@dimen/text_size_14" />
+
+</LinearLayout>
